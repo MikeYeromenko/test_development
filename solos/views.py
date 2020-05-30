@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-
+from django.views.generic import DetailView
 
 from solos.models import Solo
 
@@ -15,3 +15,7 @@ def index(request):
             solos = solos.filter(artist=request.GET.get('artist', None))
         context['solos'] = solos
     return render(request, template_name='solos/index.html', context=context)
+
+
+class SoloDetailView(DetailView):
+    pass
