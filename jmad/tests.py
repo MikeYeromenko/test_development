@@ -6,6 +6,9 @@ from solos.models import Solo
 
 class StudentsCaseTest(LiveServerTestCase):
 
+    def find_search_results(self):
+        return self.browser.find_element_by_css_selector('.jmad-search-result a')
+
     def setUp(self):
         # path to geckodriver was add with terminal with this command (on my local comp):
         # export PATH=$PATH:/home/mike/geckodriver
@@ -64,7 +67,7 @@ class StudentsCaseTest(LiveServerTestCase):
 
         # He sees too many search results...
 
-        search_results = self.browser.find_elements_by_css_selector('.jmad-search-result')
+        search_results = self.find_search_results()
         self.assertGreater(len(search_results), 2)
 
         # ... so he adds an artist to his search query and gets
@@ -73,7 +76,7 @@ class StudentsCaseTest(LiveServerTestCase):
         second_artist_input = self.browser.find_element_by_css_selector('input#jmad-artist')
         second_artist_input.send_keys('Cannonball Adderley')
         self.browser.find_element_by_css_selector('form button').click()
-        second_search_results = self.browser.find_elements_by_css_selector('.jmad-search-result')
+        second_search_results = self.find_search_results()
         self.assertEqual(len(second_search_results), 2)
 
         # He clicks on a search result.
