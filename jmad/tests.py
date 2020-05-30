@@ -1,6 +1,8 @@
 from django.test import LiveServerTestCase
 from selenium import webdriver
 
+from solos.models import Solo
+
 
 class StudentsCaseTest(LiveServerTestCase):
 
@@ -9,6 +11,22 @@ class StudentsCaseTest(LiveServerTestCase):
         # export PATH=$PATH:/home/mike/geckodriver
         self.browser = webdriver.Firefox()
         self.browser.implicitly_wait(2)
+
+        self.solo1 = Solo.objects.create(
+            instrument='saxophone',
+            artist='John Coltrane',
+            track='My Favorite Things'
+        )
+        self.solo2 = Solo.objects.create(
+            instrument='saxophone',
+            artist='Cannonball Adderley',
+            track='All Blues'
+        )
+        self.solo3 = Solo.objects.create(
+            instrument='saxophone',
+            artist='Cannonball Adderley',
+            track='Waltz for Debby'
+        )
 
     def tearDown(self):
         self.browser.quit()
@@ -53,7 +71,7 @@ class StudentsCaseTest(LiveServerTestCase):
         # a more manageable list
 
         second_artist_input = self.browser.find_element_by_css_selector('input#jmad-artist')
-        second_artist_input.send_keys('Connonball Adderley')
+        second_artist_input.send_keys('Cannonball Adderley')
         self.browser.find_element_by_css_selector('form button').click()
         second_search_results = self.browser.find_elements_by_css_selector('.jmad-search-result')
         self.assertEqual(len(second_search_results), 2)
