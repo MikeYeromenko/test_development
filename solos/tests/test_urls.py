@@ -12,7 +12,5 @@ class SolosURLsTestCase(TestCase):
         Tests that the root of the site resolves to the correct
         view function
         """
-        print(f'!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
         root = resolve('/')
-        print(f'!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{root.func}')
         self.assertEqual(root.func, index)
