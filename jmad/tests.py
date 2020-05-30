@@ -52,11 +52,11 @@ class StudentsCaseTest(LiveServerTestCase):
         # ... so he adds an artist to his search query and gets
         # a more manageable list
 
-        second_artist_input = self.browser.find_element_by_css_selector('input:jmad-artist')
+        second_artist_input = self.browser.find_element_by_css_selector('input#jmad-artist')
         second_artist_input.send_keys('Connonball Adderley')
         self.browser.find_element_by_css_selector('form button').click()
         second_search_results = self.browser.find_elements_by_css_selector('.jmad-search-result')
-        self.assertGreater(len(second_search_results), 2)
+        self.assertEqual(len(second_search_results), 2)
 
         # He clicks on a search result.
 
