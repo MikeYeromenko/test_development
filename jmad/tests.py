@@ -7,7 +7,7 @@ from solos.models import Solo
 class StudentsCaseTest(LiveServerTestCase):
 
     def find_search_results(self):
-        return self.browser.find_element_by_css_selector('.jmad-search-result a')
+        return self.browser.find_elements_by_css_selector('.jmad-search-result a')
 
     def setUp(self):
         # path to geckodriver was add with terminal with this command (on my local comp):
@@ -88,7 +88,7 @@ class StudentsCaseTest(LiveServerTestCase):
         self.assertEqual(self.browser.current_url, '{}/solos/2/'.format(self.live_server_url))
         self.assertEqual(self.browser.find_element_by_css_selector('#jmad-artist').text, 'Cannonball Adderley')
         self.assertEqual(self.browser.find_element_by_css_selector('#jmad-track').text, 'All Blues')
-        self.assertEqual(self.browser.find_element_by_css_selector('#jmad-album').text,'Kind of Blue')
+        self.assertEqual(self.browser.find_element_by_css_selector('#jmad-album').text, 'Kind of Blue')
         # He also sees the start time and end time of the solo.
         self.assertEqual(self.browser.find_element_by_css_selector('#jmad-start-time').text, '2:06')
         self.assertEqual(self.browser.find_element_by_css_selector('#jmad-end-time').text, '4:01')
