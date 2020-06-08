@@ -18,3 +18,13 @@ class Solo(models.Model):
             'artist': self.slug,
             'track': self.track.slug
         })
+
+    def get_duration(self):
+        """
+        Returns Solos duration in format '1:04 - 2:05' or empty string
+        """
+        return f'{self.start_time}-{self.end_time}' if self.start_time and self.end_time else ''
+
+    class Meta:
+        ordering = ['track', 'start_time']
+        verbose_name_plural = 'solos'
