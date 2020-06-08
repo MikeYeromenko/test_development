@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+
+from solos.models import Solo
+
+
+admin.site.register(Solo)
