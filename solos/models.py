@@ -5,7 +5,7 @@ from albums.models import Track
 
 
 class Solo(models.Model):
-    track = models.ForeignKey(Track, on_delete=models.CASCADE)
+    track = models.ForeignKey(Track, on_delete=models.CASCADE, related_name='solos')
     artist = models.CharField(max_length=100)
     instrument = models.CharField(max_length=50)
     start_time = models.CharField(max_length=20, blank=True, null=True)

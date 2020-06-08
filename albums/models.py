@@ -9,6 +9,6 @@ class Album(models.Model):
 
 class Track(models.Model):
     name = models.CharField(max_length=100)
-    album = models.ForeignKey(Album, on_delete=models.CASCADE)
+    album = models.ForeignKey(Album, on_delete=models.CASCADE, related_name='tracks')
     track_number = models.PositiveIntegerField(blank=True, null=True)
     slug = models.SlugField()

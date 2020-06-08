@@ -17,5 +17,12 @@ def index(request):
     return render(request, template_name='solos/index.html', context=context)
 
 
-class SoloDetailView(DetailView):
-    model = Solo
+# class SoloDetailView(DetailView):
+#     model = Solo
+
+
+def solo_detail(request, album, track, artist):
+    context = {
+        'solo': Solo.objects.get(slug=artist, track__slug=track, track__album__slug=album)
+    }
+    return render(request, 'solos/solo_detail.html', context)
