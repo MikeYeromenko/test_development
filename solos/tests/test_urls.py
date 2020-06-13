@@ -26,5 +26,5 @@ class SolosURLsTestCase(TestCase):
         self.assertEqual(solo_detail.kwargs['artist'], 'cannonball-adderley')
 
     def test_api_albums_url(self):
-        route = resolve('api/albums/')
+        route = resolve('/api/albums/')
         self.assertEqual(route.func.__name__, 'AlbumViewSet')
